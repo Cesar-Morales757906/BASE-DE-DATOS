@@ -8,16 +8,11 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- -----------------------------------------------------
--- Schema Hospital
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `Hospital` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 SHOW WARNINGS;
 USE `Hospital` ;
 
--- -----------------------------------------------------
 -- Table `Hospital`.`Director`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Hospital`.`Director` (
   `idDirector` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NOT NULL,
@@ -29,9 +24,6 @@ ENGINE = InnoDB;
 
 SHOW WARNINGS;
 
--- -----------------------------------------------------
--- Table `Hospital`.`Tipo_hospital`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Hospital`.`Tipo_hospital` (
   `idTipo` INT NOT NULL AUTO_INCREMENT,
   `Tipo` VARCHAR(45) NOT NULL,
@@ -40,9 +32,6 @@ ENGINE = InnoDB;
 
 SHOW WARNINGS;
 
--- -----------------------------------------------------
--- Table `Hospital`.`Municipio`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Hospital`.`Municipio` (
   `idMunicipio` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NOT NULL,
@@ -51,9 +40,6 @@ ENGINE = InnoDB;
 
 SHOW WARNINGS;
 
--- -----------------------------------------------------
--- Table `Hospital`.`Hospital`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Hospital`.`Hospital` (
   `idHospital` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NOT NULL,
@@ -100,17 +86,14 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 Inserción de los datos:
 
--- Insertar tipos de hospital (solo público y privado)
 INSERT INTO Tipo_hospital (Tipo) VALUES
 ('Público'),
 ('Privado');
 
--- Insertar municipios (todos en Oaxaca)
 INSERT INTO Municipio (Nombre) VALUES
 ('Oaxaca de Juárez'),
 ('Santa Lucía del Camino');
 
--- Insertar directores
 INSERT INTO Director (Nombre, Amaterno, Apaterno, Correo) VALUES
 ('Juan', 'López', 'Hernández', 'juan.lopez@issste.gob.mx'),
 ('María', 'García', 'Ramírez', 'maria.garcia@imss.gob.mx'),
@@ -119,7 +102,6 @@ INSERT INTO Director (Nombre, Amaterno, Apaterno, Correo) VALUES
 ('Luis', 'Flores', 'Ortiz', 'luis.flores@privado2.mx'),
 ('Laura', 'Cruz', 'Jiménez', 'laura.cruz@ninez.gob.mx');
 
--- Insertar hospitales
 INSERT INTO Hospital (
   Nombre, Latitud, Longitud, Direccion, 
   Director_idDirector, Tipo_hospital_idTipo, Municipio_idMunicipio
